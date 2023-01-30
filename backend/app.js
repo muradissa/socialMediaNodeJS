@@ -1,12 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes/user-routes';
+import {mongoDBSRV} from './mongoDBConnect'
 
 const app = express();
-
+app.use(express.json())
 app.use("/api/user",router) // http://localhost:5000/api/user/
 mongoose.connect(
-    'mongodb+srv://murad-admin:DZI6XiPuDZTzxIsy@cluster0.ykwgp7q.mongodb.net/?retryWrites=true&w=majority'
+    mongoDBSRV
     )
     .then(()=>
         app.listen(5000)
@@ -17,10 +18,3 @@ mongoose.connect(
     .catch((err)=>{
         console.log("ERROR ! can nor connect to db or localhost")
     })   
-
-
-// app.use("/api" , (req, res, next) => {
-//     res.send("Hello world");
-// })
-
-// app.listen(5000);

@@ -1,11 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import router from './routes/user-routes';
+import blogRouter from './routes/blog-routes';
 import {mongoDBSRV} from './mongoDBConnect'
 
 const app = express();
 app.use(express.json())
 app.use("/api/user",router) // http://localhost:5000/api/user/
+app.use("/api/blog",blogRouter)
+
 mongoose.connect(
     mongoDBSRV
     )
